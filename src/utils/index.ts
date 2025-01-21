@@ -1,4 +1,6 @@
 import {
+  AdviceMockItemType,
+  FooterLinksType,
   HeroSliderType,
   InfoMockItemType,
   PostMockItemType,
@@ -12,6 +14,9 @@ import post from "../assets/imgs/post.png";
 import post1 from "../assets/imgs/post1.png";
 import post2 from "../assets/imgs/post2.png";
 import post3 from "../assets/imgs/post3.png";
+import advice from "../assets/imgs/advice.png";
+import advice1 from "../assets/imgs/advice1.png";
+import advice2 from "../assets/imgs/advice2.png";
 
 export const hero_mock: HeroSliderType[] = [
   {
@@ -119,5 +124,51 @@ export const post_item: PostMockItemType[] = [
     subTitle: "September 15  I Read in 2 minutes",
     description: "The benefits of houseplants are endless. In addition to..",
     img: post3,
+  },
+];
+
+export const footer_links: FooterLinksType[] = [
+  {
+    id: 1,
+    title: "My Account",
+    link1: "My Account",
+    link2: "Address",
+    link3: "Wishlist",
+  },
+  {
+    id: 2,
+    title: "Categories",
+    link1: "House Plants",
+    link2: "Potter Plants",
+    link3: "Seeds",
+    link4: "Small Plants",
+    link5: "Accessories",
+  },
+];
+
+export const advice_item: AdviceMockItemType[] = [
+  {
+    id: 0,
+    title: "Garden Care",
+    description:
+      "We are an online plant shop offering a wide range of cheap and trendy plants.",
+    img: advice,
+    border: false,
+  },
+  {
+    id: 1,
+    title: "Plant Renovation",
+    description:
+      "We are an online plant shop offering a wide range of cheap and trendy plants.",
+    img: advice1,
+    border: true,
+  },
+  {
+    id: 2,
+    title: "Watering Graden",
+    description:
+      "We are an online plant shop offering a wide range of cheap and trendy plants.",
+    img: advice2,
+    border: true,
   },
 ];

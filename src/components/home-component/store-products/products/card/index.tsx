@@ -6,9 +6,15 @@ import {
   SearchOutlined,
   ShoppingCartOutlined,
 } from "@ant-design/icons";
+import {
+  useReduxDispatch,
+  useReduxSelector,
+} from "../../../../../hooks/useRedux";
 
 const Card: FC<CartType> = (props) => {
   const navigate = useNavigate();
+  const dispatch = useReduxDispatch();
+  const {} = useReduxSelector((state) => state.modalSlice);
   return (
     <div className="flex flex-col gap-[0.6rem]">
       <div className="h-[30rem] bg-[#f5f5f5] flex justify-center items-center transition-all duration-700  relative group">

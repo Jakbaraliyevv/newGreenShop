@@ -120,3 +120,21 @@ export interface PostMockItemType {
   description: string;
   img: string;
 }
+
+export interface FooterLinksType {
+  id: number;
+  title: string;
+  link1: string;
+  link2: string;
+  link3: string;
+  link4?: string;
+  link5?: string;
+}
+
+export interface AdviceMockItemType {
+  id: number;
+  title: string;
+  description: string;
+  img: string;
+  border: boolean;
+}

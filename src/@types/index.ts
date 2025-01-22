@@ -140,3 +140,10 @@ export interface AdviceMockItemType {
   img: string;
   border: boolean;
 }
+
+export interface CouponType {
+  code: string;
+  discount_for: number;
+  id: number;
+  title: string;
+}

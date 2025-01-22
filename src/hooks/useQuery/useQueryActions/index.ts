@@ -5,7 +5,8 @@ import { useDispatch } from "react-redux";
 import { notificationApi } from "../../../generic/notification";
 import { signInWithGoogle } from "../../../config";
 import { useReduxDispatch } from "../../useRedux";
-import { AuthUser } from "../../../@types";
+import { AuthUser, CouponType } from "../../../@types";
+import { setCoupon, setIsLoading } from "../../../redux/coupon-slice";
 
 const useLogin = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,7 @@ const useLogin = () => {
   return useMutation({
     mutationFn: ({ data }: { data: object }) =>
       axios({ url: "/user/sign-in", body: data, method: "POST" }),
-    onSuccess: ({data} : {data:{token:string , user:AuthUser}}) => {
+    onSuccess: ({ data }: { data: { token: string; user: AuthUser } }) => {
       dispatch(
         setAuthorizationModalVisibility({ open: false, isLoadnig: false })
       );
@@ -45,7 +46,7 @@ const loginWithGoogle = () => {
         body: { email: response.user.email },
       });
     },
-    onSuccess: ({data} : {data:{token:string , user:AuthUser}}) => {
+    onSuccess: ({ data }: { data: { token: string; user: AuthUser } }) => {
       dispatch(
         setAuthorizationModalVisibility({ open: false, isLoadnig: false })
       );
@@ -70,7 +71,7 @@ const useRegister = () => {
   return useMutation({
     mutationFn: ({ data }: { data: object }) =>
       axios({ url: "/user/sign-up/", method: "POST", body: data }),
-    onSuccess: ({data} : {data:{token:string , user:AuthUser}}) => {
+    onSuccess: ({ data }: { data: { token: string; user: AuthUser } }) => {
       console.log(data);
       dispatch(
         setAuthorizationModalVisibility({ open: false, isLoading: false })
@@ -99,7 +100,7 @@ const useRegisterWithGoogle = () => {
         body: { email: response.user.email },
       });
     },
-    onSuccess: ({data} : {data:{token:string , user:AuthUser}}) => {
+    onSuccess: ({ data }: { data: { token: string; user: AuthUser } }) => {
       const { token } = data;
       localStorage.setItem("token", token);
       notify("register");
@@ -117,4 +118,34 @@ const useRegisterWithGoogle = () => {
   });
 };
 
-export { useLogin, loginWithGoogle, useRegister, useRegisterWithGoogle };
+const useGetCoupon = () => {
+  const axios = useAxios();
+  const notify = notificationApi();
+  const dispatch = useReduxDispatch();
+  return useMutation({
+    mutationFn: (data: object) => {
+      dispatch(setIsLoading(true));
+      return axios({
+        url: "/features/coupon",
+        params: data,
+      });
+    },
+    onSuccess: (data: CouponType) => {
+      notify("succses_coupon");
+      dispatch(setIsLoading(false));
+      dispatch(setCoupon(data.discount_for));
+    },
+    onError: () => {
+      notify("coupon_404");
+      dispatch(setIsLoading(false));
+    },
+  });
+};
+
+export {
+  useLogin,
+  loginWithGoogle,
+  useRegister,
+  useRegisterWithGoogle,
+  useGetCoupon,
+};

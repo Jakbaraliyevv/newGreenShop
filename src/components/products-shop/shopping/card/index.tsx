@@ -57,7 +57,7 @@ import {
 } from "../../../../redux/shop-slice";
 import { notificationApi } from "../../../../generic/notification";
 
-const Card: FC<CartType> = ({
+const ShoppingCard: FC<CartType> = ({
   main_image,
   title,
   _id,
@@ -112,4 +112,4 @@ const Card: FC<CartType> = ({
   );
 };
 
-export default Card;
+export default ShoppingCard;

@@ -18,9 +18,7 @@ const Footer: FC = () => {
           <FooterSotional />
         </div>
       </div>
-      <div className="text-center py-[7px]">
-        © 2023 GreenShop. Davron Raimjonov
-      </div>
+      <div className="text-center py-[7px]"></div>
     </footer>
   );
 };

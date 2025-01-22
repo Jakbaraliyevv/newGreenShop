@@ -38,9 +38,9 @@ const Navbar = () => {
             <button className="text-[2.4rem]">
               <BellOutlined />
             </button>
-            <button>
+            <button onClick={() => navigate("/products-shop")}>
               <Badge count={0} showZero>
-                <img src={cartLogo} alt="cart" />
+                <img src={cartLogo} alt="cart" /> 
               </Badge>
             </button>
             <button

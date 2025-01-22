@@ -10,17 +10,22 @@ import {
   useReduxDispatch,
   useReduxSelector,
 } from "../../../../../hooks/useRedux";
+import { getProductShop } from "../../../../../redux/shop-slice";
 
 const Card: FC<CartType> = (props) => {
   const navigate = useNavigate();
   const dispatch = useReduxDispatch();
-  const {} = useReduxSelector((state) => state.modalSlice);
+  const { shop } = useReduxSelector((state) => state.shopSlice);
+  console.log(shop);
   return (
     <div className="flex flex-col gap-[0.6rem]">
       <div className="h-[30rem] bg-[#f5f5f5] flex justify-center items-center transition-all duration-700  relative group">
         <img className="w-4/5 h-[80%]" src={props.main_image} alt="" />
         <div className="hidden group-hover:flex transition-all duration-700 items-center gap-[1rem] absolute bottom-[1.7rem]">
-          <button className="text-[1.8rem] text-[#3D3D3D] hover:text-[#46A358] w-[3.5rem] h-[3.5rem] bg-[#ffff] rounded-[0.4rem] flex items-center justify-center">
+          <button
+            onClick={() => dispatch(getProductShop(props))}
+            className="text-[1.8rem] text-[#3D3D3D] hover:text-[#46A358] w-[3.5rem] h-[3.5rem] bg-[#ffff] rounded-[0.4rem] flex items-center justify-center"
+          >
             <ShoppingCartOutlined />
           </button>
           <button className="text-[1.8rem] text-[#3D3D3D] hover:text-[#46A358] w-[3.5rem] h-[3.5rem] bg-[#ffff] rounded-[0.4rem] flex items-center justify-center">

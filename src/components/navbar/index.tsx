@@ -5,7 +5,7 @@ import cartLogo from "../../assets/icons/cart.svg";
 import exitLogo from "../../assets/icons/exit-logo.svg";
 import { Badge } from "antd";
 import { BellOutlined } from "@ant-design/icons";
-import { useReduxDispatch } from "../../hooks/useRedux";
+import { useReduxDispatch, useReduxSelector } from "../../hooks/useRedux";
 import { setAuthorizationModalVisibility } from "../../redux/modal-slice";
 
 const Navbar = () => {
@@ -13,6 +13,7 @@ const Navbar = () => {
 
   const navigate = useNavigate();
 
+  const { shop } = useReduxSelector((state) => state.shopSlice);
   return (
     <>
       <header className="navbar container w-[90%] m-auto ">
@@ -39,8 +40,8 @@ const Navbar = () => {
               <BellOutlined />
             </button>
             <button onClick={() => navigate("/products-shop")}>
-              <Badge count={0} showZero>
-                <img src={cartLogo} alt="cart" /> 
+              <Badge count={shop.length || 0} showZero>
+                <img src={cartLogo} alt="cart" />
               </Badge>
             </button>
             <button

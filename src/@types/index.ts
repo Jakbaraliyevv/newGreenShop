@@ -91,6 +91,8 @@ export interface CartType {
   views: number;
   __v: number;
   _id: string;
+  count: number;
+  userPrice: number;
 }
 
 export interface TitleCategoryType {

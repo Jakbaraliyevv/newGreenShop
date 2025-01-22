@@ -1,33 +1,103 @@
+// import { notification } from "antd";
+
+// type Notificationtype = "login" | "register" | "password" | "add" | 406 | 409;
+
+// const notificationApi = () => {
+//   const notify = (props: Notificationtype) => {
+//     switch (props) {
+//       case "login":
+//         return notification.success({ message: "Login succesfuly" });
+//       case "register":
+//         return notification.success({ message: "Register succesfuly" });
+//       case "password":
+//         return notification.error({
+//           message: "Confirm password is not match ! ",
+//         });
+
+//       case "add":
+//         return notification.success({
+//           message: "Add to card ",
+//         });
+
+//       case 406:
+//         return notification.error({
+//           message: "The user has already registered",
+//         });
+
+//       case 409:
+//         return notification.error({
+//           message: "Loign or password wrong ! ",
+//         });
+//       default:
+//         break;
+//     }
+//   };
+//   return notify;
+// };
+
+// export { notificationApi };
+
 import { notification } from "antd";
 
-type Notificationtype = "login" | "register" | "password" | 406 | 409;
+type NotificationType =
+  | "login"
+  | "register"
+  | "passowrd"
+  | 406
+  | 409
+  | "add"
+  | "delete"
+  | "coupon"
+  | "coupon_404"
+  | "succses_coupon"
+  | "shop_not"
+  | "like"
+  | "disLike";
 
 const notificationApi = () => {
-  const notify = (props: Notificationtype) => {
+  const nottify = (props: NotificationType) => {
     switch (props) {
       case "login":
-        return notification.success({ message: "Login succesfuly" });
+        return notification.success({ message: "Login succsesful" });
       case "register":
-        return notification.success({ message: "Register succesfuly" });
-      case "password":
+        return notification.success({ message: "Register succsesful" });
+      case "passowrd":
         return notification.error({
-          message: "Confirm password is not match ! ",
+          message: "Confirm password is not match !",
         });
-
+      case "add":
+        return notification.success({
+          message: "Add to card !",
+        });
+      case "delete":
+        return notification.success({
+          message: "Delete to card !",
+        });
       case 406:
         return notification.error({
-          message: "The user has already registered",
+          message:
+            "User with same email already exists. Please make sure email is unique amd valid.",
         });
-
       case 409:
-        return notification.error({
-          message: "Loign or password wrong ! ",
-        });
+        return notification.error({ message: "Login or passowr wrong" });
+      case "coupon":
+        return notification.error({ message: "Place eneter coupon" });
+      case "coupon_404":
+        return notification.error({ message: "Coupon is not defined !" });
+      case "succses_coupon":
+        return notification.success({ message: "Coupon success !" });
+      case "shop_not":
+        return notification.error({ message: "Please place an order !" });
+      case "like":
+        return notification.success({ message: "Added like !" });
+      case "disLike":
+        return notification.success({ message: "Deleted like !" });
+      //
       default:
         break;
     }
   };
-  return notify;
+  return nottify;
 };
 
 export { notificationApi };

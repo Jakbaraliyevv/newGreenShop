@@ -5,7 +5,7 @@ import ShoppingCard from "./card";
 function Shopping() {
   const { shop } = useReduxSelector((state) => state.shopSlice);
   return (
-    <div>
+    <div className="border-b-2  border-[#46A358] ">
       <div className="flex item-center justify-between text-start border-b border-[#46A358] pb-3">
         <h2 className="text-[#3D3D3D] text-[16px] font-medium pb-[10px] w-[28%]">
           Products

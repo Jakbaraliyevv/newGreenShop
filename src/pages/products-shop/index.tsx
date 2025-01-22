@@ -1,5 +1,8 @@
+import ProductsShop from "../../components/products-shop";
+
 function ShopProducts() {
-  return <div>ShopProducts</div>;
+  return <ProductsShop />;
+  
 }
 
 export default ShopProducts;

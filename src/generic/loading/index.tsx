@@ -1,34 +1,100 @@
-import { Skeleton } from "antd";
+// import { Skeleton } from "antd";
+
+// const useLoader = () => {
+//   const category_loader = () => {
+//     return Array.from({ length: 8 }).map((_, idx) => (
+//       <div key={idx} className="mb-1">
+//         <Skeleton.Input className="!w-full " active />
+//       </div>
+//     ));
+//   };
+//   const cart_loading = () => {
+//     return Array.from({ length: 6 }).map((__dirname, idx) => {
+//       return (
+//         <div className="flex flex-col gap-[0.7rem]" key={idx}>
+//           <div className="w-full">
+//             <Skeleton.Image className="!w-full !h-[220px]" active />
+//           </div>
+//           <Skeleton.Input active className="w-full" />
+//           <Skeleton.Input active className="w-full" />
+//         </div>
+//       );
+//     });
+//   };
+
+//   const imageLoading = () => {
+//     return Array.from({ length: 4 }).map((__, idx) => (
+//       <Skeleton.Image key={idx} active={true} />
+//     ));
+//   };
+
+//   return { category_loader, cart_loading, imageLoading };
+// };
+
+// export { useLoader };
+
+import { Card, Skeleton } from "antd";
 
 const useLoader = () => {
   const category_loader = () => {
     return Array.from({ length: 8 }).map((_, idx) => (
-      <div key={idx} className="mb-1">
-        <Skeleton.Input className="!w-full " active />
+      <div className="mb-2" key={idx}>
+        <Skeleton.Input className="!w-full" active />
       </div>
     ));
   };
   const cart_loading = () => {
-    return Array.from({ length: 6 }).map((__dirname, idx) => {
+    return Array.from({ length: 6 }).map((_, idx) => {
       return (
-        <div className="flex flex-col gap-[0.7rem]" key={idx}>
+        <div key={idx}>
           <div className="w-full">
-            <Skeleton.Image className="!w-full !h-[220px]" active />
+            <Skeleton.Image className="!w-full !h-[250px]" active />
           </div>
-          <Skeleton.Input active className="w-full" />
-          <Skeleton.Input active className="w-full" />
+          <Skeleton.Input active />
+          <Skeleton.Input active />
         </div>
       );
     });
   };
-
-  const imageLoading = () => {
-    return Array.from({ length: 4 }).map((__, idx) => (
-      <Skeleton.Image key={idx} active={true} />
+  const image_loading = () => {
+    return Array.from({ length: 4 }).map((_, idx) => (
+      <Skeleton.Image key={idx} active />
     ));
   };
-
-  return { category_loader, cart_loading, imageLoading };
+  const blog_card_loading = () => {
+    return Array.from({ length: 6 }).map((_, idx) => (
+      <Card key={idx}>
+        <Skeleton active />
+      </Card>
+    ));
+  };
+  const blog_id_loading = () => {
+    return (
+      <div>
+        <div className="flex gap-4">
+          <Skeleton.Avatar active />
+          <Skeleton.Input active />
+        </div>
+        <div>
+          <Skeleton.Input active className="my-[15px]" />
+          {Array.from({ length: 20 }).map((_, idx) => (
+            <Skeleton.Input
+              key={idx}
+              active
+              className="!w-full my-[10px] !h-[20px]"
+            />
+          ))}
+        </div>
+      </div>
+    );
+  };
+  return {
+    category_loader,
+    cart_loading,
+    image_loading,
+    blog_card_loading,
+    blog_id_loading,
+  };
 };
 
 export { useLoader };

@@ -1,9 +1,10 @@
 import type { FC } from "react";
 import { CartType } from "../../../../@types";
+import { DeleteFilled } from "@ant-design/icons";
 
-const ShoppingCard: FC<CartType> = ({ main_image, title, _id }) => {
+const ShoppingCard: FC<CartType> = ({ main_image, title, _id, price }) => {
   return (
-    <div className="my-5 bg-[#eee]">
+    <div className="my-5 bg-[#eee] flex items-center justify-between">
       <div className="flex items-center gap-4 p-4">
         <img className="w-[70px] h-[70px]" src={main_image} alt={title} />
         <div>
@@ -13,6 +14,24 @@ const ShoppingCard: FC<CartType> = ({ main_image, title, _id }) => {
           </p>
         </div>
       </div>
+
+      <div className="text-[#727272] text-[16px] font-medium  w-[20%]">
+        ${price}
+      </div>
+
+      <div className="flex items-center gap-3  w-[20%]">
+        <button className="w-[25px] h-[25px] bg-[#46A358] rounded-full text-white">
+          -
+        </button>
+        <span className="text-[17px]">{1}</span>
+        <button className="w-[25px] h-[25px] bg-[#46A358] rounded-full text-white">
+          +
+        </button>
+      </div>
+      <div className="text-[#727272] text-[16px] font-medium   w-[20%]">
+        34567
+      </div>
+      <DeleteFilled className="text-[#727272] text-[20px]" />
     </div>
   );
 };

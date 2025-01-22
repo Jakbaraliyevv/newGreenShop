@@ -6,7 +6,7 @@ function ProductsShop() {
   return (
     <section className="w-[90%] m-auto">
       <BradGramp pathTitle="Shopping card" />
-      <div className="grid grid-cols-[3fr_1fr] my-9">
+      <div className="grid grid-cols-[3fr_1.5fr] my-9 gap-5 ">
         <Shopping />
         <CardTotal />
       </div>

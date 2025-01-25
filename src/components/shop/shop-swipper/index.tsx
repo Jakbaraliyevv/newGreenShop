@@ -5,12 +5,12 @@ import { DataTYpe } from "../../../@types";
 
 const ShopSWipper: FC<DataTYpe> = ({ data, isError, isLoading }) => {
   const [image_src, setImage_src] = useState<string>("");
-  const { imageLoading } = useLoader();
+  const { image_loading } = useLoader();
   return (
     <div className="flex items-center gap-5">
       <div className="flex flex-col gap-7 justify-between h-full">
         {isLoading || isError
-          ? imageLoading()
+          ? image_loading()
           : data?.detailed_images.map((value, idx) => (
               <div
                 key={idx}

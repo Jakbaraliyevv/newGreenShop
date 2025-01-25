@@ -2,11 +2,12 @@ import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/icons/logo.svg";
 import searchLogo from "../../assets/icons/search-icon.svg";
 import cartLogo from "../../assets/icons/cart.svg";
-import exitLogo from "../../assets/icons/exit-logo.svg";
 import { Badge } from "antd";
-import { BellOutlined } from "@ant-design/icons";
+import { BellOutlined, LoginOutlined } from "@ant-design/icons";
 import { useReduxDispatch, useReduxSelector } from "../../hooks/useRedux";
 import { setAuthorizationModalVisibility } from "../../redux/modal-slice";
+import { AuthUser } from "../../@types";
+import { useAuthUser, useIsAuthenticated } from "react-auth-kit";
 
 const Navbar = () => {
   const dispatch = useReduxDispatch();
@@ -14,6 +15,9 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   const { shop } = useReduxSelector((state) => state.shopSlice);
+  const auth: AuthUser = useAuthUser()() ?? {};
+  const isAuth = useIsAuthenticated()();
+
   return (
     <>
       <header className="navbar container w-[90%] m-auto ">
@@ -55,8 +59,15 @@ const Navbar = () => {
               }
               className="bg-[#46a358] w-[10rem] h-[3.5rem] rounded-[0.6rem] flex items-center justify-center gap-[0.4rem] font-medium text-[1.6rem] text-[#fff] "
             >
-              <img src={exitLogo} alt="" />
-              Login
+              <p>
+                {isAuth ? (
+                  auth.name
+                ) : (
+                  <>
+                    <LoginOutlined /> Login
+                  </>
+                )}
+              </p>
             </button>
           </nav>
         </div>

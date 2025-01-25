@@ -9,11 +9,14 @@ import {
 import { useReduxDispatch } from "../../../../../hooks/useRedux";
 import { getProductShop } from "../../../../../redux/shop-slice";
 import { notificationApi } from "../../../../../generic/notification";
+import { useIsAuthenticated } from "react-auth-kit";
+import { setAuthorizationModalVisibility } from "../../../../../redux/modal-slice";
 
 const Card: FC<CartType> = (props) => {
   const navigate = useNavigate();
   const dispatch = useReduxDispatch();
   const notifiy = notificationApi();
+  const isAuth = useIsAuthenticated()();
   return (
     <div className="flex flex-col gap-[0.6rem]">
       <div className="h-[30rem] bg-[#f5f5f5] flex justify-center items-center transition-all duration-700  relative group">
@@ -28,7 +31,19 @@ const Card: FC<CartType> = (props) => {
           >
             <ShoppingCartOutlined />
           </button>
-          <button className="text-[1.8rem] text-[#3D3D3D] hover:text-[#46A358] w-[3.5rem] h-[3.5rem] bg-[#ffff] rounded-[0.4rem] flex items-center justify-center">
+          <button
+            onClick={() =>
+              isAuth
+                ? ""
+                : dispatch(
+                    setAuthorizationModalVisibility({
+                      open: true,
+                      loading: false,
+                    })
+                  )
+            }
+            className="text-[1.8rem] text-[#3D3D3D] hover:text-[#46A358] w-[3.5rem] h-[3.5rem] bg-[#ffff] rounded-[0.4rem] flex items-center justify-center"
+          >
             <HeartOutlined />
           </button>
           <button
@@ -53,7 +68,5 @@ const Card: FC<CartType> = (props) => {
     </div>
   );
 };
-
-// http://localhost:5173/shop/house-plants/66d09a759fa7aef6c5d0012f
 
 export default Card;

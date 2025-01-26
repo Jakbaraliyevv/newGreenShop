@@ -1,42 +1,3 @@
-// import { notification } from "antd";
-
-// type Notificationtype = "login" | "register" | "password" | "add" | 406 | 409;
-
-// const notificationApi = () => {
-//   const notify = (props: Notificationtype) => {
-//     switch (props) {
-//       case "login":
-//         return notification.success({ message: "Login succesfuly" });
-//       case "register":
-//         return notification.success({ message: "Register succesfuly" });
-//       case "password":
-//         return notification.error({
-//           message: "Confirm password is not match ! ",
-//         });
-
-//       case "add":
-//         return notification.success({
-//           message: "Add to card ",
-//         });
-
-//       case 406:
-//         return notification.error({
-//           message: "The user has already registered",
-//         });
-
-//       case 409:
-//         return notification.error({
-//           message: "Loign or password wrong ! ",
-//         });
-//       default:
-//         break;
-//     }
-//   };
-//   return notify;
-// };
-
-// export { notificationApi };
-
 import { notification } from "antd";
 
 type NotificationType =
@@ -52,7 +13,9 @@ type NotificationType =
   | "succses_coupon"
   | "shop_not"
   | "like"
-  | "disLike";
+  | "disLike"
+  | "edit"
+  | "edit_adress";
 
 const notificationApi = () => {
   const nottify = (props: NotificationType) => {
@@ -92,6 +55,10 @@ const notificationApi = () => {
         return notification.success({ message: "Added like !" });
       case "disLike":
         return notification.success({ message: "Deleted like !" });
+      case "edit":
+        return notification.success({ message: "Edited user !" });
+      case "edit_adress":
+        return notification.success({ message: "Edited Adress and user !" });
       //
       default:
         break;

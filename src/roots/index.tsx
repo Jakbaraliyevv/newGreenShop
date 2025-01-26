@@ -6,6 +6,9 @@ import ShopProducts from "../pages/products-shop";
 import ProductCheckout from "../pages/product-checkout";
 import Blogs from "../pages/blog";
 import Rendering from "../components/blog/rendering";
+import Profile from "../pages/profile";
+import PriveteRoute from "./privete-route";
+import { path_profile } from "../utils";
 
 export const root = createBrowserRouter([
   {
@@ -35,6 +38,21 @@ export const root = createBrowserRouter([
       {
         path: "/blog/:id/:user_id",
         element: <Rendering />,
+      },
+
+      {
+        path: "/profile",
+        element: <PriveteRoute />,
+        children: [
+          {
+            path: "/profile",
+            element: <Profile />,
+            children: path_profile.map(({ Component, path }) => ({
+              path: `${path}`,
+              element: <Component />,
+            })),
+          },
+        ],
       },
     ],
   },

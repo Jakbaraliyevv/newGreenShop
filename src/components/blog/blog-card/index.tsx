@@ -12,7 +12,7 @@ const BlogCard: FC<BlogType> = ({
   _id,
   created_by,
 }) => {
-  const axios = useAxios();
+const axios = useAxios();
   const navitate = useNavigate();
   return (
     <Card
@@ -36,7 +36,7 @@ const BlogCard: FC<BlogType> = ({
         title={
           <h2
             onClick={() => {
-              axios({ url: "/user/blog/view", method: "PUT", body: { _id } });
+              axios({ url: "/user/blog/view", method: "PUT", body :{_id} });
               navitate(`/blog/${_id}/${created_by}`);
             }}
             className="cursor-pointer"

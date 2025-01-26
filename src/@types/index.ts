@@ -1,12 +1,10 @@
 export interface FieldType {
   email?: string;
   password?: string;
-  remember?: string;
 }
-
 export interface RegisterType {
   name?: string;
-  surname?: string;
+  surname: string;
   email?: string;
   password?: string;
   confirm_password?: string;
@@ -17,6 +15,14 @@ export interface WishListItemType {
   route_path: string;
 }
 
+interface BillingAdres {
+  country?: string;
+  town?: string;
+  street_address?: string;
+  additional_street_address?: string;
+  state?: string;
+  zip?: string;
+}
 export interface AuthUser {
   _id?: string;
   email?: string;
@@ -27,12 +33,7 @@ export interface AuthUser {
   phone_number?: string;
   wishlist?: WishListItemType[];
   username?: string;
-  country?: string;
-  town?: string;
-  street_address?: string;
-  additional_street_address?: string;
-  state?: string;
-  zip?: string;
+  billing_address?: BillingAdres;
   followers?: string[];
   permission?: {
     create: boolean;
@@ -42,7 +43,6 @@ export interface AuthUser {
   };
 }
 
-// hero slider type
 export interface HeroSliderType {
   id: number;
   title: string;
@@ -52,8 +52,6 @@ export interface HeroSliderType {
   small_img_url: string;
   buttonText: string;
 }
-
-// home: category type
 export interface CategoryType {
   count: number;
   created_at: string;
@@ -63,15 +61,12 @@ export interface CategoryType {
   __v: number;
   _id: string;
 }
-
-// discount type
 export interface DiscounType {
   discoount_up_to: number;
   id: number;
   poster_image_url: string;
   title: string;
 }
-
 export interface CartType {
   category: string;
   comments: string[];
@@ -91,22 +86,19 @@ export interface CartType {
   views: number;
   __v: number;
   _id: string;
-  count: number;
-  userPrice: number;
+  count?: number | undefined;
+  userPrice?: number;
 }
-
 export interface TitleCategoryType {
   id: number;
   title: string;
   label: string;
 }
-
-export interface DataTYpe {
-  isLoading?: Boolean;
-  isError?: Boolean;
+export interface DataType {
+  isLoading: boolean;
+  isError: boolean;
   data?: CartType;
 }
-
 export interface InfoMockItemType {
   id: number;
   title: string;
@@ -114,7 +106,6 @@ export interface InfoMockItemType {
   img: string;
   vektor: string;
 }
-
 export interface PostMockItemType {
   id: number;
   title: string;
@@ -122,7 +113,6 @@ export interface PostMockItemType {
   description: string;
   img: string;
 }
-
 export interface FooterLinksType {
   id: number;
   title: string;
@@ -132,7 +122,6 @@ export interface FooterLinksType {
   link4?: string;
   link5?: string;
 }
-
 export interface AdviceMockItemType {
   id: number;
   title: string;
@@ -140,14 +129,12 @@ export interface AdviceMockItemType {
   img: string;
   border: boolean;
 }
-
 export interface CouponType {
   code: string;
   discount_for: number;
   id: number;
   title: string;
 }
-
 export interface BlogType {
   content: string;
   created_at: string;
@@ -159,13 +146,11 @@ export interface BlogType {
   __v: number;
   _id: string;
 }
-
 export interface BlogTypeApi {
   data?: BlogType[];
   isLoading: boolean;
   isError: boolean;
 }
-
 export interface BlogTypeApiItem {
   data?: BlogType;
   isLoading: boolean;
@@ -175,4 +160,38 @@ export interface UserTypeApi {
   data?: AuthUser;
   isLoading: boolean;
   isError: boolean;
+}
+
+export interface PathProfileType {
+  id: number;
+  title: string;
+  path: string;
+  Component: React.FC;
+  Icon: React.ForwardRefExoticComponent<React.RefAttributes<HTMLDivElement>>;
+}
+export interface MakeOrderType {
+  name: string;
+  surname: string;
+  country: string;
+  street: string;
+  state: string;
+  email: string;
+  zip: string;
+  appartment: string;
+  town: string;
+  phone_number: string;
+  comment: string;
+  payment_method: string;
+}
+
+export interface OrderType {
+  billing_address: BillingAdres;
+  created_at: string;
+  created_by: string;
+  extra_shop_info: {
+    total: number;
+    method: string;
+  };
+  shop_list: CartType[];
+  _id: string;
 }

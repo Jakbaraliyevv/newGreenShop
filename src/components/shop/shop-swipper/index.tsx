@@ -1,9 +1,9 @@
 import { Image, Skeleton } from "antd";
 import { useState, type FC } from "react";
 import { useLoader } from "../../../generic/loading";
-import { DataTYpe } from "../../../@types";
+import { DataType } from "../../../@types";
 
-const ShopSWipper: FC<DataTYpe> = ({ data, isError, isLoading }) => {
+const ShopSWipper: FC<DataType> = ({ data, isError, isLoading }) => {
   const [image_src, setImage_src] = useState<string>("");
   const { image_loading } = useLoader();
   return (

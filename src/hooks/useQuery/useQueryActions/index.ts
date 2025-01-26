@@ -8,6 +8,7 @@ import { AuthUser, CouponType } from "../../../@types";
 import { setCoupon, setIsLoading } from "../../../redux/coupon-slice";
 import { useSignIn } from "react-auth-kit";
 import { setAuthorizationModalVisibility } from "../../../redux/modal-slice";
+
 const useLogin = () => {
   const dispatch = useDispatch();
   const axios = useAxios();
@@ -39,7 +40,6 @@ const useLogin = () => {
     },
   });
 };
-
 const loginWithGoogle = () => {
   const axios = useAxios();
   const dispatch = useDispatch();
@@ -146,9 +146,6 @@ const useGetCoupon = () => {
     },
   });
 };
-
-
-
 
 export {
   useLogin,

@@ -10,7 +10,7 @@ import {
 import { useReduxDispatch } from "../../../../../hooks/useRedux";
 import { getProductShop } from "../../../../../redux/shop-slice";
 import { notificationApi } from "../../../../../generic/notification";
-import { useAuthHeader, useAuthUser, useIsAuthenticated } from "react-auth-kit";
+import { useAuthUser, useIsAuthenticated } from "react-auth-kit";
 import { setAuthorizationModalVisibility } from "../../../../../redux/modal-slice";
 import { useHandler } from "../../../../../generic/hendler/inde";
 

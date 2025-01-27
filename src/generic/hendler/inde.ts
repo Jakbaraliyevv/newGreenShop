@@ -169,7 +169,17 @@ const useHandler = () => {
     }
   };
 
-  return { likeHandler, updeterUserDetails, upadeterUserAdress };
+  const useUpdateUnFollowerCashe = (follower_id: string) => {
+    return updaterUser({
+      followers: auth.followers?.filter((value) => value !== follower_id),
+    });
+  };
+  return {
+    likeHandler,
+    updeterUserDetails,
+    upadeterUserAdress,
+    useUpdateUnFollowerCashe,
+  };
 };
 
 export { useHandler };

@@ -195,3 +195,9 @@ export interface OrderType {
   shop_list: CartType[];
   _id: string;
 }
+
+export interface UserBodyTitleTyoe {
+  id: string;
+  title: string;
+  Component: React.FC;
+}

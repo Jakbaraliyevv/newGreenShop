@@ -6,6 +6,7 @@ import {
   PathProfileType,
   PostMockItemType,
   TitleCategoryType,
+  UserBodyTitleTyoe,
 } from "../@types";
 
 import info from "../assets/imgs/info.png";
@@ -30,6 +31,11 @@ import Order from "../components/profile/profile-pages/order";
 import Adress from "../components/profile/profile-pages/adress";
 import ProductsProfile from "../components/profile/profile-pages/products";
 import Details from "../components/profile/profile-pages/details";
+import About from "../components/user/user-body/about";
+import Products from "../components/home-component/store-products/products";
+import Posts from "../components/home/posts/posts";
+import Likes from "../components/user/user-body/likes";
+import Followers from "../components/user/user-body/followers";
 
 export const hero_mock: HeroSliderType[] = [
   {
@@ -221,5 +227,33 @@ export const path_profile: PathProfileType[] = [
     Component: Order,
     Icon: DashboardOutlined,
     title: "Track Order",
+  },
+];
+
+export let user_body_title: UserBodyTitleTyoe[] = [
+  {
+    id: "1",
+    title: "About",
+    Component: About,
+  },
+  {
+    id: "2",
+    title: "Products",
+    Component: Products,
+  },
+  {
+    id: "3",
+    title: "Posts",
+    Component: Posts,
+  },
+  {
+    id: "4",
+    title: "Likes",
+    Component: Likes,
+  },
+  {
+    id: "5",
+    title: "Followers",
+    Component: Followers,
   },
 ];

@@ -11,6 +11,7 @@ import {
   setAuthorizationModalVisibility,
   setOrderModalVisiblty,
 } from "../../../redux/modal-slice";
+import { useHandler } from "../../../generic/hendler/inde";
 
 const useLogin = () => {
   const dispatch = useDispatch();
@@ -168,6 +169,34 @@ const useMakeOrderQuery = () => {
   });
 };
 
+const useFollwerUser = () => {
+  const axios = useAxios();
+  const notify = notificationApi();
+  const { useUpdateUnFollowerCashe } = useHandler();
+  return useMutation({
+    mutationFn: (_id: string) => {
+      useUpdateUnFollowerCashe(_id);
+      return axios({ url: "/user/follow", method: "POST", body: { _id } }).then(
+        () => notify("follow")
+      );
+    },
+  });
+};
+const useUnFollowerUser = () => {
+  const axios = useAxios();
+  const notify = notificationApi();
+  const { useUpdateUnFollowerCashe } = useHandler();
+  return useMutation({
+    mutationFn: (_id: string) => {
+      useUpdateUnFollowerCashe(_id);
+      return axios({
+        url: "/user/unfollow",
+        method: "POST",
+        body: { _id },
+      }).then(() => notify("un-follow"));
+    },
+  });
+};
 export {
   useLogin,
   loginWithGoogle,
@@ -175,4 +204,6 @@ export {
   useRegisterWithGoogle,
   useGetCoupon,
   useMakeOrderQuery,
+  useFollwerUser,
+  useUnFollowerUser,
 };

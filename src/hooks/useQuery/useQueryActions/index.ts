@@ -7,7 +7,10 @@ import { useReduxDispatch } from "../../useRedux";
 import { AuthUser, CouponType } from "../../../@types";
 import { setCoupon, setIsLoading } from "../../../redux/coupon-slice";
 import { useSignIn } from "react-auth-kit";
-import { setAuthorizationModalVisibility } from "../../../redux/modal-slice";
+import {
+  setAuthorizationModalVisibility,
+  setOrderModalVisiblty,
+} from "../../../redux/modal-slice";
 
 const useLogin = () => {
   const dispatch = useDispatch();
@@ -147,10 +150,29 @@ const useGetCoupon = () => {
   });
 };
 
+const useMakeOrderQuery = () => {
+  const axios = useAxios();
+  const dispatch = useReduxDispatch();
+  return useMutation({
+    mutationFn: (data: object) => {
+      dispatch(setOrderModalVisiblty({ open: false, isLoading: true }));
+      return axios({
+        url: "/order/make-order",
+        method: "POST",
+        body: { ...data },
+      });
+    },
+    onSuccess: () => {
+      dispatch(setOrderModalVisiblty({ open: true, isLoading: false }));
+    },
+  });
+};
+
 export {
   useLogin,
   loginWithGoogle,
   useRegister,
   useRegisterWithGoogle,
   useGetCoupon,
+  useMakeOrderQuery,
 };

@@ -65,7 +65,6 @@ const notificationApi = () => {
         return notification.success({ message: "Follow user !" });
       case "un-follow":
         return notification.success({ message: "Un follow user !" });
-      //
       default:
         break;
     }

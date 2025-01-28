@@ -1,14 +1,15 @@
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { useAxios } from "../../useAxios";
 import { useDispatch } from "react-redux";
 import { notificationApi } from "../../../generic/notification";
 import { signInWithGoogle } from "../../../config";
 import { useReduxDispatch } from "../../useRedux";
-import { AuthUser, CouponType } from "../../../@types";
+import { AuthUser, CouponType, OrderType } from "../../../@types";
 import { setCoupon, setIsLoading } from "../../../redux/coupon-slice";
 import { useSignIn } from "react-auth-kit";
 import {
   setAuthorizationModalVisibility,
+  setOrderDetailsVisiblty,
   setOrderModalVisiblty,
 } from "../../../redux/modal-slice";
 import { useHandler } from "../../../generic/hendler/inde";
@@ -169,6 +170,40 @@ const useMakeOrderQuery = () => {
   });
 };
 
+const useDeleteOrderForCashe = () => {
+  const queryClient = useQueryClient();
+  return ({ _id }: { _id: string }) => {
+    queryClient.setQueryData("order", (oldData: OrderType[] | undefined) => {
+      if (oldData) {
+        return oldData.filter((value: OrderType) => value._id !== _id);
+      } else {
+        return [];
+      }
+    });
+  };
+};
+
+const useDeleteOrderMutate = () => {
+  const axios = useAxios();
+  const dispatch = useReduxDispatch();
+  const deleteCashe = useDeleteOrderForCashe();
+  const notify = notificationApi();
+  return useMutation({
+    mutationFn: ({ _id }: { _id: string }) => {
+      dispatch(setOrderDetailsVisiblty());
+      deleteCashe({ _id });
+      return axios({
+        url: "/order/delete-order",
+        method: "DELETE",
+        body: { _id },
+      });
+    },
+    onSuccess: () => {
+      notify("delete");
+    },
+  });
+};
+
 const useFollwerUser = () => {
   const axios = useAxios();
   const notify = notificationApi();
@@ -182,6 +217,9 @@ const useFollwerUser = () => {
     },
   });
 };
+
+
+
 const useUnFollowerUser = () => {
   const axios = useAxios();
   const notify = notificationApi();
@@ -197,6 +235,9 @@ const useUnFollowerUser = () => {
     },
   });
 };
+
+
+
 export {
   useLogin,
   loginWithGoogle,
@@ -206,4 +247,5 @@ export {
   useMakeOrderQuery,
   useFollwerUser,
   useUnFollowerUser,
+  useDeleteOrderMutate,
 };

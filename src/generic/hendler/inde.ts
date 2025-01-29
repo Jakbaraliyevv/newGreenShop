@@ -169,6 +169,9 @@ const useHandler = () => {
     }
   };
 
+  const useUpdateFollowerCashe = (follower_id: string) => {
+    return updaterUser({ followers: [...(auth.followers ?? []), follower_id] });
+  };
   const useUpdateUnFollowerCashe = (follower_id: string) => {
     return updaterUser({
       followers: auth.followers?.filter((value) => value !== follower_id),
@@ -179,6 +182,7 @@ const useHandler = () => {
     updeterUserDetails,
     upadeterUserAdress,
     useUpdateUnFollowerCashe,
+    useUpdateFollowerCashe,
   };
 };
 

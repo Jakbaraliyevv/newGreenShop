@@ -204,13 +204,14 @@ const useDeleteOrderMutate = () => {
   });
 };
 
+// obuna qilish uchun funksiya
 const useFollwerUser = () => {
   const axios = useAxios();
   const notify = notificationApi();
-  const { useUpdateUnFollowerCashe } = useHandler();
+  const { useUpdateFollowerCashe } = useHandler();
   return useMutation({
     mutationFn: (_id: string) => {
-      useUpdateUnFollowerCashe(_id);
+      useUpdateFollowerCashe(_id);
       return axios({ url: "/user/follow", method: "POST", body: { _id } }).then(
         () => notify("follow")
       );
@@ -218,8 +219,7 @@ const useFollwerUser = () => {
   });
 };
 
-
-
+// obunani bekor qilish uchun funkisya
 const useUnFollowerUser = () => {
   const axios = useAxios();
   const notify = notificationApi();
@@ -235,8 +235,6 @@ const useUnFollowerUser = () => {
     },
   });
 };
-
-
 
 export {
   useLogin,
